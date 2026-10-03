@@ -1,0 +1,4 @@
+// Adds an invoice's line amounts, in cents.
+fn total(lines) {
+  return sum(lines)
+}

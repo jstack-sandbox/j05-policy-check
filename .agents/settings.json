@@ -1,0 +1,37 @@
+{
+  "jstack": {
+    "version": "1.4.0",
+    "checksum": "sha256:7c56b03281b1c181fa0ec2a84d7e0f3342beb1f2531a3a7058843cac229bc3ff"
+  },
+  "owners": {
+    "owner": "fund-flow-admin"
+  },
+  "profiles": {
+    "lang-a": {},
+    "runner-a": {}
+  },
+  "required_checks": {
+    "00 policy": {
+      "producer": {
+        "app": "jstack"
+      }
+    },
+    "jstack/lock": {
+      "producer": {
+        "app": "jstack"
+      }
+    },
+    "01 lint": {
+      "producer": {
+        "workflow": ".github/workflows/ci.yml",
+        "job": "lint"
+      }
+    },
+    "02 tests": {
+      "producer": {
+        "workflow": ".github/workflows/ci.yml",
+        "job": "tests"
+      }
+    }
+  }
+}

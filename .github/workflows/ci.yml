@@ -1,0 +1,69 @@
+name: ci
+on:
+  pull_request:
+  push:
+    branches: ["spike/**"]
+permissions:
+  contents: read
+  checks: write
+jobs:
+  lint:
+    name: 01 lint
+    runs-on: ubuntu-24.04
+    steps:
+      - name: post the check runs this commit's fixtures name for lint
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          REPO: ${{ github.repository }}
+          LIST: mint-lint.json
+        run: |
+          base="https://raw.githubusercontent.com/$REPO/jstack-fixtures/$SHA"
+          curl -fsSL -o mint.json "$base/$LIST" || exit 0
+          # Post only once jstack's own 00 policy run exists on the commit,
+          # so every run posted here sorts after it.
+          for _ in $(seq 60); do
+            count=$(gh api "repos/$REPO/commits/$SHA/check-runs?check_name=00%20policy&filter=all" \
+              --jq '[.check_runs[] | select(.app.slug == "sandbox-jstack")] | length')
+            [ "$count" != 0 ] && break
+            sleep 5
+          done
+          jq -c '.[]' mint.json | while read -r run; do
+            jq --arg sha "$SHA" '. + {head_sha: $sha, status: "completed"}' <<<"$run" |
+              gh api "repos/$REPO/check-runs" --input - > /dev/null
+          done
+  tests:
+    name: 02 tests
+    runs-on: ubuntu-24.04
+    steps:
+      - name: post the check runs this commit's fixtures name for tests
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          REPO: ${{ github.repository }}
+          LIST: mint-tests.json
+        run: |
+          base="https://raw.githubusercontent.com/$REPO/jstack-fixtures/$SHA"
+          curl -fsSL -o mint.json "$base/$LIST" || exit 0
+          # Post only once jstack's own 00 policy run exists on the commit,
+          # so every run posted here sorts after it.
+          for _ in $(seq 60); do
+            count=$(gh api "repos/$REPO/commits/$SHA/check-runs?check_name=00%20policy&filter=all" \
+              --jq '[.check_runs[] | select(.app.slug == "sandbox-jstack")] | length')
+            [ "$count" != 0 ] && break
+            sleep 5
+          done
+          jq -c '.[]' mint.json | while read -r run; do
+            jq --arg sha "$SHA" '. + {head_sha: $sha, status: "completed"}' <<<"$run" |
+              gh api "repos/$REPO/check-runs" --input - > /dev/null
+          done
+      - name: fail when this commit's fixtures say the tests fail
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          REPO: ${{ github.repository }}
+          LIST: tests-fail
+        run: |
+          if curl -fsS -o /dev/null "https://raw.githubusercontent.com/$REPO/jstack-fixtures/$SHA/$LIST"; then
+            exit 1
+          fi

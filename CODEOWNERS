@@ -1,0 +1,13 @@
+* @jstack-sandbox/devs
+
+# jstack: machinery
+/.github/ @fund-flow-admin # @jstack-sandbox/scripts
+/tools/ @jstack-sandbox/Machinery
+/src/a/tools/ @jstack-sandbox/machinery
+/.agents/settings.json @jstack-sandbox/machinery
+/CODEOWNERS @jstack-sandbox/machinery
+/lang-a.json @jstack-sandbox/machinery
+
+/tools/scripts/* @jstack-sandbox/scripts
+/tools/release/ @jstack-sandbox/MACHINERY
+/tests/

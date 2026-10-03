@@ -1,0 +1,17 @@
+name: no-mistakes
+on:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  review:
+    name: review
+    runs-on: ubuntu-24.04
+    steps:
+      - name: take as long as this commit's fixtures say
+        env:
+          SHA: ${{ github.event.pull_request.head.sha }}
+          REPO: ${{ github.repository }}
+        run: |
+          wait=$(curl -fsSL "https://raw.githubusercontent.com/$REPO/jstack-fixtures/$SHA/no-mistakes-wait" || echo 0)
+          sleep "$wait"
