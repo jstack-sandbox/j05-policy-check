@@ -1,3 +1,3 @@
 # Billing
 
-Invoices and their totals.
+Invoices and their totals, in cents.
