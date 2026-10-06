@@ -8,7 +8,6 @@ queue_rules:
   - name: default
     batch_size: 2
     batch_max_wait_time: 2 min
-    allow_inplace_checks: false
     max_checks_retries: 1
     merge_method: merge
     queue_conditions:
