@@ -1,0 +1,3 @@
+fn tax(total) {
+  return total / 2
+}
