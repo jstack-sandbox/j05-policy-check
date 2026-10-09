@@ -10,6 +10,7 @@ queue_rules:
     batch_max_wait_time: 2 min
     max_checks_retries: 1
     merge_method: merge
+    checks_timeout: 30 minutes
     queue_conditions:
       - "check-success=00 policy"
       - "check-success=jstack/lock"
