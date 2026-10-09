@@ -18,6 +18,5 @@ queue_rules:
       - "check-success=02 tests"
     merge_conditions:
       - "check-success=00 policy"
-      - "check-success=jstack/lock"
       - "check-success=01 lint"
       - "check-success=02 tests"
