@@ -10,14 +10,8 @@ jobs:
   lint:
     name: 01 lint
     runs-on: ubuntu-24.04
+    environment: ci-release
     steps:
-      - name: wait until the step releases this commit's CI
-        timeout-minutes: 20
-        env:
-          GH_TOKEN: ${{ github.token }}
-          RELEASE: https://api.github.com/repos/${{ github.repository }}/contents/${{ github.event.pull_request.head.sha || github.sha }}/ci-release?ref=jstack-fixtures
-        run: |
-          until curl -fsS -o /dev/null -H "Authorization: Bearer $GH_TOKEN" "$RELEASE"; do sleep 5; done
       - name: post the check runs this commit's fixtures name for lint
         env:
           GH_TOKEN: ${{ github.token }}
@@ -42,14 +36,8 @@ jobs:
   tests:
     name: 02 tests
     runs-on: ubuntu-24.04
+    environment: ci-release
     steps:
-      - name: wait until the step releases this commit's CI
-        timeout-minutes: 20
-        env:
-          GH_TOKEN: ${{ github.token }}
-          RELEASE: https://api.github.com/repos/${{ github.repository }}/contents/${{ github.event.pull_request.head.sha || github.sha }}/ci-release?ref=jstack-fixtures
-        run: |
-          until curl -fsS -o /dev/null -H "Authorization: Bearer $GH_TOKEN" "$RELEASE"; do sleep 5; done
       - name: post the check runs this commit's fixtures name for tests
         env:
           GH_TOKEN: ${{ github.token }}
