@@ -1,0 +1,3 @@
+test("VAT is a fifth", () => {
+  expect(vat(500)).toBe(100)
+})
