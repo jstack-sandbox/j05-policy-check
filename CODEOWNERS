@@ -8,6 +8,6 @@
 /CODEOWNERS @jstack-sandbox/machinery
 /lang-a.json @jstack-sandbox/machinery
 
-/tools/scripts/* @jstack-sandbox/scripts
+/tools/scripts/* @jstack-sandbox/machinery
 /tools/release/ @jstack-sandbox/MACHINERY
 /tests/
