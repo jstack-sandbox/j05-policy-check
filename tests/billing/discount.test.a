@@ -1,0 +1,3 @@
+test("a discount lowers the total", () => {
+  expect(discount(1000, 10)).toBe(900)
+})
