@@ -11,3 +11,4 @@
 /tools/scripts/* @jstack-sandbox/scripts
 /tools/release/ @jstack-sandbox/MACHINERY
 /tests/
+/tests/billing/ @jstack-sandbox/machinery
