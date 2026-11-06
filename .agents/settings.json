@@ -1,19 +1,14 @@
 {
   "jstack": {
     "version": "1.4.0",
-    "checksum": "sha256:eed2f3642758b7c30d25ad8a40a1b387589b0dc524f51f79f31ce283365f0aef"
+    "checksum": "sha256:f017986a05e2b43aa8d5c0526a3887d304c1c1d4cacd72a71e6e2cbdb7cb4358"
   },
   "owners": {
     "owner": "jstack-sandbox-owner"
   },
   "profiles": {
     "lang-a": {},
-    "runner-a": {},
-    "bare-a": {},
-    "broken-a": {},
-    "kindless-a": {},
-    "listed-a": {},
-    "other-a": {}
+    "runner-a": {}
   },
   "required_checks": {
     "00 policy": {
