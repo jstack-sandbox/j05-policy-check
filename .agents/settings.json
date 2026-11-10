@@ -29,7 +29,7 @@
     },
     "02 tests": {
       "producer": {
-        "workflow": ".github/workflows/ci.yml",
+        "workflow": ".github/workflows/fast.yml",
         "job": "tests"
       }
     }
