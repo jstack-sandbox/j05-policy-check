@@ -6,7 +6,7 @@ permissions:
 jobs:
   review:
     name: review
-    runs-on: ubuntu-24.04
+    runs-on: ${{ vars.CI_RUNS_ON }}
     environment: ci-release
     steps:
       - name: take as long as this commit's fixtures say
