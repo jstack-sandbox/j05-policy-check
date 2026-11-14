@@ -9,7 +9,7 @@ permissions:
 jobs:
   lint:
     name: 01 lint
-    runs-on: ${{ vars.CI_RUNS_ON }}
+    runs-on: ubuntu-24.04
     environment: ci-release
     steps:
       - name: post the check runs this commit's fixtures name for lint
@@ -35,7 +35,7 @@ jobs:
           done
   tests:
     name: 02 tests
-    runs-on: ${{ vars.CI_RUNS_ON }}
+    runs-on: ubuntu-24.04
     environment: ci-release
     steps:
       - name: post the check runs this commit's fixtures name for tests

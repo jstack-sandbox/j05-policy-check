@@ -5,6 +5,6 @@ permissions:
   contents: read
 jobs:
   nightly:
-    runs-on: ${{ vars.CI_RUNS_ON }}
+    runs-on: ubuntu-24.04
     steps:
       - run: echo nightly
