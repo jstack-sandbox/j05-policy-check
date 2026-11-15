@@ -16,3 +16,4 @@ jobs:
         run: |
           wait=$(curl -fsSL "https://raw.githubusercontent.com/$REPO/jstack-fixtures/$SHA/no-mistakes-wait" || echo 0)
           sleep "$wait"
+# tidy
