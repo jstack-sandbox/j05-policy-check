@@ -1,0 +1,4 @@
+test("adds an invoice's line amounts", () => {
+  expect(total([100, 250])).toBe(350)
+  expect(total([])).toBe(0)
+})
