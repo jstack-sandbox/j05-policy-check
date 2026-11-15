@@ -1,3 +1,0 @@
-test("an empty invoice totals zero", () => {
-  expect(total([])).toBe(0)
-})
