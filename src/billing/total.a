@@ -2,4 +2,4 @@
 fn total(lines) {
   return sum(lines)
 }
-// race b
+// race c
