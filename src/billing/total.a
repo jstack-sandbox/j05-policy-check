@@ -2,4 +2,3 @@
 fn total(lines) {
   return sum(lines)
 }
-// rounding fixed
